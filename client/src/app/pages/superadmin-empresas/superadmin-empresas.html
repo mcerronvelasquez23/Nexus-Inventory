@@ -1,0 +1,89 @@
+<mat-sidenav-container class="dashboard">
+  <mat-sidenav mode="side" opened class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-area">
+        <mat-icon>admin_panel_settings</mat-icon>
+        <h2>Nexus Admin</h2>
+      </div>
+      <p class="company-name">Gestión Global</p>
+    </div>
+
+    <div class="nav-menu">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/superadmin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </a>
+        <a mat-list-item routerLink="/superadmin/usuarios" routerLinkActive="active">
+          <mat-icon>people</mat-icon>
+          <span>Usuarios</span>
+        </a>
+        <a mat-list-item routerLink="/superadmin/empresas" routerLinkActive="active">
+          <mat-icon>business</mat-icon>
+          <span>Empresas</span>
+        </a>
+        <a mat-list-item routerLink="/superadmin/ventas" routerLinkActive="active">
+          <mat-icon>payments</mat-icon>
+          <span>Ventas</span>
+        </a>
+        <a mat-list-item routerLink="/superadmin/historial" routerLinkActive="active">
+          <mat-icon>history</mat-icon>
+          <span>Historial</span>
+        </a>
+        <mat-divider></mat-divider>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <mat-toolbar class="topbar">
+      <span class="spacer"></span>
+      <logout-button variant="icon"></logout-button>
+      <span class="user-greeting">Panel de Infraestructura Central</span>
+    </mat-toolbar>
+
+    <div class="dashboard-body">
+      <h1 class="page-title">Directorio de Empresas Registradas</h1>
+      <p style="color: #666; margin-bottom: 25px;">Administración general y purga masiva de organizaciones.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+        
+        <mat-card *ngFor="let empresa of empresas" style="border-radius: 12px; overflow: hidden; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          
+          <div style="background-color: #f5f5f5; padding: 20px 0;">
+            <img 
+              [src]="'https://ui-avatars.com/api/?name=' + empresa._id + '&background=random&color=fff&size=100&bold=true'" 
+              alt="Logo {{empresa._id}}" 
+              style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          </div>
+
+          <mat-card-content style="padding: 15px;">
+            <h2 style="margin: 10px 0 5px; font-weight: bold; text-transform: uppercase; color: #333;">
+              {{ empresa._id }}
+            </h2>
+            <p style="color: #666; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 5px;">
+              <mat-icon style="font-size: 18px; width: 18px; height: 18px; color: #1976d2;">people</mat-icon>
+              Total Usuarios: <strong>{{ empresa.totalUsuarios }}</strong>
+            </p>
+          </mat-card-content>
+
+          <mat-divider></mat-divider>
+
+          <mat-card-actions style="justify-content: center; padding: 15px; background-color: #fafafa;">
+            <button mat-flat-button color="warn" style="width: 100%; border-radius: 8px;" (click)="eliminarEmpresa(empresa._id)">
+              <mat-icon>delete_sweep</mat-icon>
+              Purgar Empresa
+            </button>
+          </mat-card-actions>
+          
+        </mat-card>
+
+        <div *ngIf="empresas.length === 0" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #888;">
+          <mat-icon style="font-size: 60px; height: 60px; width: 60px; opacity: 0.5;">business_center</mat-icon>
+          <h2>No hay empresas registradas actualmente.</h2>
+        </div>
+
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

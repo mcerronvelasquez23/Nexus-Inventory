@@ -1,0 +1,181 @@
+<mat-sidenav-container class="dashboard">
+  <mat-sidenav mode="side" opened class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-area">
+        <mat-icon>admin_panel_settings</mat-icon>
+        <h2>Nexus Admin</h2>
+      </div>
+      <p class="company-name">Gestión Global</p>
+    </div>
+
+    <div class="nav-menu">
+
+    <mat-nav-list>
+
+      <!-- Dashboard -->
+      <a
+        mat-list-item
+        routerLink="/superadmin"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+
+      </a>
+
+      <!-- Usuarios -->
+      <a
+        mat-list-item
+        routerLink="/superadmin/usuarios"
+        routerLinkActive="active">
+
+        <mat-icon>people</mat-icon>
+        <span>Usuarios</span>
+
+      </a>
+
+      <!-- Empresas -->
+      <a
+        mat-list-item
+        routerLink="/superadmin/empresas"
+        routerLinkActive="active">
+
+        <mat-icon>business</mat-icon>
+        <span>Empresas</span>
+
+      </a>
+
+      <!-- Ventas -->
+      <a
+        mat-list-item
+        routerLink="/superadmin/ventas"
+        routerLinkActive="active">
+
+        <mat-icon>payments</mat-icon>
+        <span>Ventas</span>
+
+      </a>
+
+      <!-- Historial -->
+      <a
+        mat-list-item
+        routerLink="/superadmin/historial"
+        routerLinkActive="active">
+
+        <mat-icon>history</mat-icon>
+        <span>Historial</span>
+
+      </a>
+
+      <mat-divider></mat-divider>
+
+    </mat-nav-list>
+
+  </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <mat-toolbar class="topbar">
+      <span class="spacer"></span>
+      <logout-button variant="icon"></logout-button>
+      <span class="user-greeting">Panel de Infraestructura Central</span>
+    </mat-toolbar>
+
+    <div class="dashboard-body">
+      <h1 class="page-title">Directorio Maestro de Usuarios</h1>
+
+      <mat-card class="form-card" style="margin-bottom: 25px; padding: 20px;">
+        <mat-card-header>
+          <mat-card-title>Instanciar Nuevo Super Administrador</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="margin-top: 15px;">
+          <form (ngSubmit)="registrarSuperadmin()" #f="ngForm" class="form-grid" style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre Completo</mat-label>
+              <input matInput [(ngModel)]="nuevoSuperadmin.nombre" name="nombre" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Correo Electrónico</mat-label>
+              <input matInput type="email" [(ngModel)]="nuevoSuperadmin.correo" name="correo" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Contraseña Cifrada</mat-label>
+              <input matInput type="password" [(ngModel)]="nuevoSuperadmin.password" name="password" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>División Empresarial / Contexto</mat-label>
+              <input matInput [(ngModel)]="nuevoSuperadmin.empresa" name="empresa" placeholder="Ej: NexusCore" required>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" style="height: 56px;">
+              <mat-icon>person_add_alt_1</mat-icon>
+              Dar de Alta Superadmin
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="table-card">
+        <mat-table [dataSource]="usuarios" class="mat-elevation-z8">
+          
+          <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.nombre}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="correo">
+            <mat-header-cell *matHeaderCellDef>Correo</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.correo}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="empresa">
+            <mat-header-cell *matHeaderCellDef>Organización</mat-header-cell>
+            <mat-cell *matCellDef="let element" style="text-transform: uppercase; font-weight: 600;">{{element.empresa}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="rol">
+            <mat-header-cell *matHeaderCellDef>Privilegio / Rol</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="badge" [ngClass]="element.rol">{{element.rol}}</span>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="estado">
+            <mat-header-cell *matHeaderCellDef>Estado Operativo</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span *ngIf="element.estado && element.intentosFallidos < 3" style="color: green; font-weight: bold;">✔ Activo</span>
+              <span *ngIf="!element.estado || element.intentosFallidos >= 3" style="color: red; font-weight: bold;">⛔ Bloqueado</span>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="intentos">
+            <mat-header-cell *matHeaderCellDef>Logs de Fallos</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.intentosFallidos || 0}} / 3</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef>Acciones de Control</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              
+              <button mat-icon-button color="accent" *ngIf="!element.estado || element.intentosFallidos >= 3" (click)="desbloquear(element._id)" matTooltip="Restablecer accesos de cuenta">
+                <mat-icon>lock_open</mat-icon>
+              </button>
+
+              <button mat-icon-button color="warn" (click)="eliminarUsuario(element._id)" matTooltip="Eliminar permanentemente">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </mat-card>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

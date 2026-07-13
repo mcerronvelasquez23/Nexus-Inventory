@@ -1,0 +1,246 @@
+@import '../../../styles/dashboard-theme.css';
+
+/* Layout Principal: divide la pantalla entre el menú y el contenido */
+.proveedores-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+/* Tarjeta Horizontal adaptada a tu theme */
+.horizontal-card {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid #ebedf3;
+  padding: 15px 20px;
+  transition: .3s;
+  background-color: white;
+}
+
+.horizontal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08) !important;
+}
+
+.card-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Información del lado izquierdo */
+.proveedor-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+}
+
+.prov-title {
+  font-size: 1.15rem;
+  margin: 0 0 6px 0;
+  font-weight: 600;
+  color: #181c32; /* Color de texto del theme */
+}
+
+/* Detalles (RUC y Teléfono) */
+.details-row {
+  display: flex;
+  gap: 30px;
+  margin-left: 10px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: #7e8299; /* Gris sutil del theme */
+}
+
+.detail-item mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: #a1a5b7;
+}
+
+/* Botones a la derecha */
+.proveedor-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  border-radius: 8px !important;
+  font-weight: 500;
+}
+
+.btn-whatsapp {
+  background-color: #1bc5bd !important; /* Verde del theme */
+  color: white !important;
+}
+
+/* Badges de estado */
+.badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  width: fit-content;
+}
+
+.badge-activo {
+  background-color: #c9f7f5;
+  color: #1bc5bd;
+}
+
+.badge-inactivo {
+  background-color: #ffe2e5;
+  color: #f64e60;
+}
+
+.no-data-msg {
+  color: #7e8299;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.expanded-catalog-panel {
+  width: 100%;
+  margin-top: 15px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.catalog-divider {
+  margin: 10px 0 15px 0 !important;
+}
+
+.catalog-section-title {
+  font-size: 1rem;
+  color: #3f4254;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.catalog-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.catalog-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 10px 15px;
+  border: 1px dashed #e4e6ef;
+}
+
+.item-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 250px;
+}
+
+.category-emoji-badge {
+  font-size: 1.8rem;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 6px;
+  border-radius: 8px;
+  line-height: 1;
+}
+
+.item-name-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.prod-name {
+  font-weight: 600;
+  color: #181c32;
+  font-size: 0.95rem;
+}
+
+.prod-cat-label {
+  font-size: 0.8rem;
+  color: #b5b5c3;
+}
+
+.item-pricing {
+  color: #5e6278;
+  font-size: 0.9rem;
+}
+
+.quantity-selectors {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1px solid #e4e6ef;
+  border-radius: 20px;
+  padding: 2px 6px;
+}
+
+.quantity-display {
+  font-weight: 700;
+  font-size: 1rem;
+  min-width: 20px;
+  text-align: center;
+  color: #181c32;
+}
+
+.item-subtotal {
+  font-size: 0.95rem;
+  color: #181c32;
+  min-width: 120px;
+  text-align: right;
+}
+
+/* Footer de la sección expandible */
+.catalog-footer-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f1f3f6;
+  border-radius: 8px;
+}
+
+.total-amount-box {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #3f4254;
+}
+
+.total-price-highlight {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #181c32;
+  margin-left: 5px;
+}
+
+.btn-purchase-confirm {
+  border-radius: 8px !important;
+  font-weight: 600;
+  background-color: #ffa800 !important; /* Color Naranja de tu Paleta KPIs */
+  color: white !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

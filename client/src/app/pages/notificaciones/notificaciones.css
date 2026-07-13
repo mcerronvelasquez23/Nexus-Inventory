@@ -1,0 +1,49 @@
+@import '../../../styles/dashboard-theme.css';
+
+/* =========================================
+   KPIs NOTIFICACIONES
+   ========================================= */
+
+.bg-red {
+  background: #f64e60;
+}
+
+.danger {
+  color: #f64e60;
+}
+
+/* =========================================
+   TABLA
+   ========================================= */
+
+.table-card {
+  margin-top: 25px;
+  border-radius: 12px;
+  border: 1px solid #ebedf3;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+
+table {
+  width: 100%;
+}
+
+.badge-critico {
+
+  background: #ffe2e5;
+  color: #f64e60;
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.mat-mdc-row:hover {
+
+  background: #f8f9fa;
+
+  transition: .3s;
+}

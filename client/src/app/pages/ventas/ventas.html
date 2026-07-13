@@ -1,0 +1,332 @@
+<mat-sidenav-container class="dashboard">
+
+  <!-- SIDEBAR -->
+  <mat-sidenav #sidenav mode="side" opened class="sidebar">
+
+    <div class="sidebar-header">
+      <div class="logo-area">
+        <mat-icon>point_of_sale</mat-icon>
+        <h2>Módulo Ventas</h2>
+      </div>
+      <p class="company-name">Market Plus</p>
+    </div>
+
+        <div class="nav-menu">
+
+      <mat-nav-list>
+
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard Principal</span>
+        </a>
+
+        <a mat-list-item routerLink="/productos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>inventory_2</mat-icon>
+          <span>Productos</span>
+        </a>
+
+        <a mat-list-item routerLink="/categorias" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>category</mat-icon>
+          <span>Categorías</span>
+        </a>
+
+        <a mat-list-item routerLink="/proveedores" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>local_shipping</mat-icon>
+          <span>Proveedores</span>
+        </a>
+
+        <a mat-list-item routerLink="/ventas" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>point_of_sale</mat-icon>
+          <span>Ventas</span>
+        </a>
+
+        <a mat-list-item routerLink="/reportes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>bar_chart</mat-icon>
+          <span>Reportes</span>
+        </a>
+
+        <a mat-list-item routerLink="/notificaciones" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>notifications</mat-icon>
+          <span>Notificaciones</span>
+        </a>
+
+        <mat-divider></mat-divider>
+
+        <a mat-list-item routerLink="/escaner" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>qr_code_scanner</mat-icon>
+          <span>Escáner</span>
+        </a>
+
+        <a mat-list-item routerLink="/usuarios" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>people</mat-icon>
+          <span>Usuarios</span>
+        </a>
+
+        <a mat-list-item routerLink="/chatbot" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>smart_toy</mat-icon>
+          <span>Chatbot IA</span>
+        </a>
+
+          <!-- 👇 AQUÍ -->
+        <app-sidebar-footer></app-sidebar-footer>
+
+      </mat-nav-list>
+
+    </div>
+
+  </mat-sidenav>
+
+  <!-- CONTENIDO -->
+  <mat-sidenav-content class="main-content">
+
+    <mat-toolbar class="topbar">
+      <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+      <span class="spacer"></span>
+      <span class="user-greeting">Bienvenido, {{ nombreEmpresa }}</span>
+      <logout-button variant="icon"></logout-button>
+      <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+    </mat-toolbar>
+
+    <div class="dashboard-body">
+
+      <h1 class="page-title">
+        Dashboard de Ventas
+      </h1>
+
+      <mat-card class="table-card">
+
+        <mat-card-header>
+
+          <mat-card-title>
+            Registrar Nueva Venta
+          </mat-card-title>
+
+        </mat-card-header>
+
+        <mat-card-content>
+
+          <div
+            style="
+            display:flex;
+            gap:20px;
+            align-items:center;
+            flex-wrap:wrap;">
+
+            <mat-form-field appearance="outline">
+
+              <mat-label>
+
+                Producto
+
+              </mat-label>
+
+              <mat-select
+                [(ngModel)]="productoSeleccionado">
+
+                <mat-option
+                  *ngFor="let p of productos"
+                  [value]="p._id">
+
+                  {{ p.nombre }}
+                  (Stock: {{ p.stock }})
+
+                </mat-option>
+
+              </mat-select>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+              <mat-label>
+
+                Cantidad
+
+              </mat-label>
+
+              <input
+                matInput
+                type="number"
+                min="1"
+                [(ngModel)]="cantidad">
+
+            </mat-form-field>
+
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="registrarVenta()">
+
+              <mat-icon>
+                point_of_sale
+              </mat-icon>
+
+              Registrar Venta
+
+            </button>
+
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+
+      <!-- KPIs -->
+      <div class="kpi-grid">
+
+        <mat-card class="kpi-card">
+
+          <mat-card-header>
+            <div mat-card-avatar class="kpi-icon-wrapper bg-blue">
+              <mat-icon>store</mat-icon>
+            </div>
+
+            <mat-card-title>Empresas</mat-card-title>
+
+            <mat-card-subtitle>
+              Registradas
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <h2 class="kpi-value">
+              {{ ventas.length }}
+            </h2>
+          </mat-card-content>
+
+        </mat-card>
+
+        <mat-card class="kpi-card">
+
+          <mat-card-header>
+            <div mat-card-avatar class="kpi-icon-wrapper bg-green">
+              <mat-icon>attach_money</mat-icon>
+            </div>
+
+            <mat-card-title>Ingresos Totales</mat-card-title>
+
+            <mat-card-subtitle>
+              Todas las empresas
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <h2 class="kpi-value">
+              S/. {{ totalIngresos }}
+            </h2>
+          </mat-card-content>
+
+        </mat-card>
+
+        <mat-card class="kpi-card">
+
+          <mat-card-header>
+            <div mat-card-avatar class="kpi-icon-wrapper bg-orange">
+              <mat-icon>shopping_cart</mat-icon>
+            </div>
+
+            <mat-card-title>Ventas Registradas</mat-card-title>
+
+            <mat-card-subtitle>
+              Acumuladas
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <h2 class="kpi-value">
+              {{ totalVentas }}
+            </h2>
+          </mat-card-content>
+
+        </mat-card>
+
+      </div>
+
+      <!-- TABLA -->
+      <mat-card class="table-card">
+
+        <mat-card-header>
+          <mat-card-title>
+            Empresas y Predicciones
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          <table mat-table [dataSource]="ventas" class="ventas-table">
+
+            <!-- Empresa -->
+            <ng-container matColumnDef="empresa">
+              <th mat-header-cell *matHeaderCellDef>Empresa</th>
+              <td mat-cell *matCellDef="let v">
+                {{ v.empresa }}
+              </td>
+            </ng-container>
+
+            <!-- Plan -->
+            <ng-container matColumnDef="planActual">
+              <th mat-header-cell *matHeaderCellDef>Plan</th>
+              <td mat-cell *matCellDef="let v">
+                {{ v.planActual }}
+              </td>
+            </ng-container>
+
+            <!-- Ventas -->
+            <ng-container matColumnDef="cantidadVentas">
+              <th mat-header-cell *matHeaderCellDef>Ventas</th>
+              <td mat-cell *matCellDef="let v">
+                {{ v.cantidadVentas }}
+              </td>
+            </ng-container>
+
+            <!-- Ingresos -->
+            <ng-container matColumnDef="ingresosTotales">
+              <th mat-header-cell *matHeaderCellDef>Ingresos</th>
+              <td mat-cell *matCellDef="let v">
+                S/. {{ v.ingresosTotales }}
+              </td>
+            </ng-container>
+
+            <!-- Predicción -->
+            <ng-container matColumnDef="ventaPromedioDiaria">
+              <th mat-header-cell *matHeaderCellDef>Promedio Diario</th>
+              <td mat-cell *matCellDef="let v">
+                {{ v.ventaPromedioDiaria }}
+              </td>
+            </ng-container>
+
+            <!-- Estado -->
+            <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+
+              <td mat-cell *matCellDef="let v">
+
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'critico': v.estado === 'CRITICO',
+                    'normal': v.estado === 'NORMAL',
+                    'reabastecer': v.estado === 'REQUIERE_REABASTECIMIENTO'
+                  }">
+
+                  {{ v.estado }}
+
+                </span>
+
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          </table>
+
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

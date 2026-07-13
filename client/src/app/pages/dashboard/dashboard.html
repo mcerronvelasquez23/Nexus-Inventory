@@ -1,0 +1,171 @@
+<mat-sidenav-container class="dashboard">
+
+  <!-- SIDEBAR -->
+  <mat-sidenav #sidenav mode="side" opened class="sidebar">
+
+    <div class="sidebar-header">
+      <div class="logo-area">
+        <mat-icon>inventory</mat-icon>
+        <h2>Nexus-Inventory</h2>
+      </div>
+      <p class="company-name">{{ nombreEmpresa }}</p>
+    </div>
+
+    <div class="nav-menu">
+
+      <mat-nav-list>
+
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard Principal</span>
+        </a>
+
+        <a mat-list-item routerLink="/productos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>inventory_2</mat-icon>
+          <span>Productos</span>
+        </a>
+
+        <a mat-list-item routerLink="/categorias" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>category</mat-icon>
+          <span>Categorías</span>
+        </a>
+
+        <a mat-list-item routerLink="/proveedores" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>local_shipping</mat-icon>
+          <span>Proveedores</span>
+        </a>
+
+        <a mat-list-item routerLink="/ventas" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>point_of_sale</mat-icon>
+          <span>Ventas</span>
+        </a>
+
+        <a mat-list-item routerLink="/reportes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>bar_chart</mat-icon>
+          <span>Reportes</span>
+        </a>
+
+        <a mat-list-item routerLink="/notificaciones" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>notifications</mat-icon>
+          <span>Notificaciones</span>
+        </a>
+
+        <mat-divider></mat-divider>
+
+        <a mat-list-item routerLink="/escaner" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>qr_code_scanner</mat-icon>
+          <span>Escáner</span>
+        </a>
+
+        <a mat-list-item routerLink="/usuarios" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>people</mat-icon>
+          <span>Usuarios</span>
+        </a>
+
+        <a mat-list-item routerLink="/chatbot" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>smart_toy</mat-icon>
+          <span>Chatbot IA</span>
+        </a>
+        
+        <!-- 👇 AQUÍ -->
+      <app-sidebar-footer></app-sidebar-footer>
+      </mat-nav-list>
+      
+    </div>
+    
+    
+  </mat-sidenav>
+
+  <!-- CONTENIDO -->
+  <mat-sidenav-content class="main-content">
+
+    <mat-toolbar class="topbar">
+      <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+      <span class="spacer"></span>
+      <span class="user-greeting">Bienvenido, {{ nombreEmpresa | titlecase }}</span>
+      <logout-button variant="icon"></logout-button>
+      <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+    </mat-toolbar>
+
+    <div class="dashboard-body">
+      <h1 class="page-title">Resumen de Operaciones</h1>
+
+      <div class="kpi-grid">
+        <mat-card class="kpi-card">
+          <mat-card-header>
+            <div mat-card-avatar class="kpi-icon-wrapper bg-blue"><mat-icon>inventory_2</mat-icon></div>
+            <mat-card-title>Total Productos</mat-card-title>
+            <mat-card-subtitle>Registrados en el sistema</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content><h2 class="kpi-value">{{ kpis.totalProductos }}</h2></mat-card-content>
+        </mat-card>
+
+        <mat-card class="kpi-card">
+          <mat-card-header>
+            <div mat-card-avatar class="kpi-icon-wrapper bg-green"><mat-icon>point_of_sale</mat-icon></div>
+            <mat-card-title>Ventas Totales</mat-card-title>
+            <mat-card-subtitle>Histórico de la empresa</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content><h2 class="kpi-value">{{ kpis.totalVentas }}</h2></mat-card-content>
+        </mat-card>
+
+        <mat-card class="kpi-card">
+          <mat-card-header>
+            <div mat-card-avatar class="kpi-icon-wrapper bg-orange"><mat-icon>group</mat-icon></div>
+            <mat-card-title>Usuarios Activos</mat-card-title>
+            <mat-card-subtitle>Personal autorizado</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content><h2 class="kpi-value">{{ kpis.totalUsuarios }}</h2></mat-card-content>
+        </mat-card>
+      </div>
+
+      <h2 class="section-subtitle" style="margin-top: 30px; font-weight: 500;">Métricas y Predicciones de Inventario</h2>
+      
+      <div class="charts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 20px; margin-top: 15px;">
+        
+        <mat-card class="chart-card" style="padding: 15px;">
+          <mat-card-header><mat-card-title style="font-size: 16px;">⚠️ Alerta: Productos Próximos a Agotarse</mat-card-title></mat-card-header>
+          <mat-card-content style="height: 300px; position: relative;">
+            <canvas baseChart [data]="stockChartData" [options]="stockChartOptions" [type]="stockChartType"></canvas>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="chart-card" style="padding: 15px;">
+          <mat-card-header><mat-card-title style="font-size: 16px;">💰 Top 5: Productos con Mayor Margen Neto</mat-card-title></mat-card-header>
+          <mat-card-content style="height: 300px; position: relative;">
+            <canvas baseChart [data]="profitChartData" [options]="chartOptions" [type]="'bar'"></canvas>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="chart-card" style="padding: 15px;">
+          <mat-card-header><mat-card-title style="font-size: 16px;">📦 Distribución de Stock por Categoría</mat-card-title></mat-card-header>
+          <mat-card-content style="height: 300px; position: relative;">
+            <canvas baseChart [data]="categoryChartData" [options]="chartOptions" [type]="'doughnut'"></canvas>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="chart-card" style="padding: 15px;">
+          <mat-card-header><mat-card-title style="font-size: 16px;">📊 Valor Financiero: Capital Invertido vs Estimado Venta</mat-card-title></mat-card-header>
+          <mat-card-content style="height: 300px; position: relative;">
+            <canvas baseChart [data]="financialChartData" [options]="chartOptions" [type]="'bar'"></canvas>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="chart-card" style="padding: 15px;">
+          <mat-card-header><mat-card-title style="font-size: 16px;">🩺 Semáforo de Salud General del Almacén</mat-card-title></mat-card-header>
+          <mat-card-content style="height: 300px; position: relative;">
+            <canvas baseChart [data]="healthChartData" [options]="chartOptions" [type]="'polarArea'"></canvas>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="chart-card" style="padding: 15px;">
+          <mat-card-header><mat-card-title style="font-size: 16px;">🏢 Top 5: Proveedores por Mayor Volumen de Stock</mat-card-title></mat-card-header>
+          <mat-card-content style="height: 300px; position: relative;">
+            <canvas baseChart [data]="supplierChartData" [options]="chartOptions" [type]="'pie'"></canvas>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

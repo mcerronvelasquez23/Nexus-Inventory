@@ -1,0 +1,56 @@
+@import '../../../styles/dashboard-theme.css';
+
+/* Contenedor central absoluto */
+.centered-viewport {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 64px); /* Descuenta el tamaño estructural de tu topbar */
+  background-color: #f4f6f8; 
+}
+
+/* Tarjeta contenedora minimalista */
+.report-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  background-color: #ffffff;
+  padding: 50px 60px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid #ebedf3;
+  transition: .3s ease;
+}
+
+.report-card-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Dimensión y suavizado de la ilustración vectorial */
+.report-illustration {
+  width: 180px;
+  height: 180px;
+  display: block;
+}
+
+/* Estilo del botón principal de exportación */
+.btn-pdf-action {
+  padding: 12px 35px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  background-color: #3699ff !important; /* Azul corporativo unificado */
+  color: #ffffff !important;
+  transition: .2s;
+}
+
+.btn-pdf-action:hover:not([disabled]) {
+  background-color: #187de4 !important;
+}
+
+.btn-pdf-action[disabled] {
+  background-color: #d1d3e0 !important;
+  color: #a1a5b7 !important;
+}

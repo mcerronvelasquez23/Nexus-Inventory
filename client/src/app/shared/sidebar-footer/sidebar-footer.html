@@ -1,0 +1,32 @@
+<div class="sidebar-card">
+
+  <mat-icon class="footer-logo">
+    inventory_2
+  </mat-icon>
+
+  <div class="footer-title">
+    {{ systemName }}
+  </div>
+
+  <div class="footer-version">
+    v{{ version }} · © 2026
+  </div>
+
+  <div class="status">
+    <span class="status-dot"></span>
+    <span>Estado: En línea</span>
+  </div>
+
+  <div class="theme-toggle">
+        <mat-icon>light_mode</mat-icon>
+    
+        <mat-slide-toggle
+          color="primary"
+          [checked]="darkMode"
+          (change)="toggleTheme($event.checked)">
+        </mat-slide-toggle>
+    
+        <mat-icon>dark_mode</mat-icon>
+  </div>
+
+</div>

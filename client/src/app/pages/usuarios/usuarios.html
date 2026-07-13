@@ -1,0 +1,113 @@
+<mat-sidenav-container class="dashboard">
+
+  <mat-sidenav #sidenav mode="side" opened class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-area">
+        <mat-icon>inventory</mat-icon>
+        <h2>Nexus-Inventory</h2>
+      </div>
+      <p class="company-name">{{ nombreEmpresa }}</p>
+    </div>
+
+    <div class="nav-menu">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard"><mat-icon>dashboard</mat-icon> <span>Dashboard Principal</span></a>
+        <a mat-list-item routerLink="/productos"><mat-icon>inventory_2</mat-icon> <span>Productos</span></a>
+        <a mat-list-item routerLink="/categorias"><mat-icon>category</mat-icon> <span>Categorías</span></a>
+        <a mat-list-item routerLink="/proveedores"><mat-icon>local_shipping</mat-icon> <span>Proveedores</span></a>
+        <a mat-list-item routerLink="/ventas"><mat-icon>point_of_sale</mat-icon> <span>Ventas</span></a>
+        <a mat-list-item routerLink="/reportes"><mat-icon>bar_chart</mat-icon> <span>Reportes</span></a>
+        <a mat-list-item routerLink="/notificaciones"><mat-icon>notifications</mat-icon> <span>Notificaciones</span></a>
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="/escaner"><mat-icon>qr_code_scanner</mat-icon> <span>Escáner</span></a>
+        <a mat-list-item routerLink="/usuarios"><mat-icon>people</mat-icon> <span>Usuarios</span></a>
+        <a mat-list-item routerLink="/chatbot"><mat-icon>smart_toy</mat-icon> <span>Chatbot IA</span></a>
+        <!-- 👇 AQUÍ -->
+        <app-sidebar-footer></app-sidebar-footer>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    
+    <mat-toolbar class="topbar">
+      <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+      <span class="spacer"></span>
+      <span class="user-greeting">Bienvenido, {{ nombreEmpresa }}</span>
+      <logout-button variant="icon"></logout-button>
+      <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+    </mat-toolbar>
+
+    <div class="dashboard-body">
+      <div class="page-header">
+        <h1 class="page-title">Administración de Usuarios</h1>
+      </div>
+
+      <mat-card class="form-alta-card" *ngIf="esAdmin">
+        <mat-card-header>
+          <mat-card-title>Registrar Nuevo Integrante</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="form-grid-layout">
+          
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre Completo</mat-label>
+            <input matInput [(ngModel)]="nuevoUsuario.nombre" placeholder="Ej. Juan Pérez" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput type="email" [(ngModel)]="nuevoUsuario.correo" placeholder="ejemplo@correo.com" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña Acceso</mat-label>
+            <input matInput type="password" [(ngModel)]="nuevoUsuario.password" placeholder="Mínimo 6 caracteres" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Rol Asignado</mat-label>
+            <mat-select [(ngModel)]="nuevoUsuario.rol" required>
+              <mat-option value="usuario">Usuario (Lectura)</mat-option>
+              <mat-option value="admin">Administrador (Escritura/Control)</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-actions class="form-actions">
+          <button mat-flat-button color="primary" class="btn-guardar" (click)="registrarUsuario()">
+            <mat-icon>person_add</mat-icon> Dar de Alta Integrante
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+      <div class="users-list-box">
+        <h2 class="box-title">Lista de usuarios de {{ nombreEmpresa }}</h2>
+        
+        <div class="circular-cards-grid">
+          <div class="user-circular-card" *ngFor="let user of usuarios">
+            
+            <div class="avatar-circle-wrapper" [ngClass]="user.rol === 'admin' ? 'border-admin' : 'border-user'">
+              <mat-icon class="avatar-icon">{{ user.rol === 'admin' ? 'supervisor_account' : 'person' }}</mat-icon>
+            </div>
+
+            <div class="user-meta-text">
+              <span class="user-card-name">{{ user.nombre }}</span>
+              <span class="user-card-email">{{ user.correo }}</span>
+              <span class="role-badge" [ngClass]="user.rol === 'admin' ? 'badge-admin-style' : 'badge-user-style'">
+                {{ user.rol | uppercase }}
+              </span>
+            </div>
+
+            <div class="delete-action-container" *ngIf="esAdmin">
+              <button mat-icon-button color="warn" class="btn-delete-user" (click)="removerUsuario(user._id!)" title="Eliminar usuario">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

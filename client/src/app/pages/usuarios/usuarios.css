@@ -1,0 +1,164 @@
+@import '../../../styles/dashboard-theme.css';
+
+/* Formulario de Registro de Usuarios */
+.form-alta-card {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid #ebedf3;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.form-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 16px 10px 0;
+}
+
+.btn-guardar {
+  border-radius: 8px !important;
+  font-weight: 500;
+}
+
+/* Contenedor o Cuadro de la Lista de Usuarios */
+.users-list-box {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #ebedf3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  padding: 25px;
+}
+
+.box-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #181c32;
+  margin-bottom: 25px;
+  text-transform: capitalize;
+  border-bottom: 2px dashed #f4f6f8;
+  padding-bottom: 10px;
+}
+
+/* Grid de Tarjetas Circulares */
+.circular-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+/* TARJETA TOTALMENTE ENVOLVENTE Y CIRCULADA */
+.user-circular-card {
+  background-color: #fcfdfe;
+  border: 1px solid #ebedf3;
+  border-radius: 20px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: .3s;
+}
+
+.user-circular-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  background-color: #ffffff;
+}
+
+/* Envoltorio circular para el avatar */
+.avatar-circle-wrapper {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  background-color: #f4f6f8;
+}
+
+.border-admin {
+  border: 3px solid #3699ff; /* Azul para Administradores */
+  color: #3699ff;
+}
+
+.border-user {
+  border: 3px solid #1bc5bd; /* Verde para Usuarios comunes */
+  color: #1bc5bd;
+}
+
+.avatar-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+/* Bloque textual identificador del usuario */
+.user-meta-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.user-card-name {
+  font-weight: 600;
+  color: #181c32;
+  font-size: 1rem;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.user-card-email {
+  font-size: 0.8rem;
+  color: #7e8299;
+  margin-bottom: 12px;
+  word-break: break-all;
+  padding: 0 5px;
+}
+
+/* Badges estéticos internos de la tarjeta */
+.role-badge {
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-admin-style {
+  background-color: #e1f0ff;
+  color: #3699ff;
+}
+
+.badge-user-style {
+  background-color: #c9f7f5;
+  color: #1bc5bd;
+}
+
+/* Contenedor del botón flotante de eliminación */
+.delete-action-container {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-delete-user {
+  transition: transform .2s;
+}
+
+.btn-delete-user:hover {
+  transform: scale(1.15);
+}

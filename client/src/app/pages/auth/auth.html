@@ -1,0 +1,63 @@
+<div class="split-layout">
+
+  <div class="image-side">
+    <img src="/images/nexus logo.png" alt="Nexus Inventory B2B">
+  </div>
+
+  <div class="form-side">
+
+    <mat-card class="auth-card">
+
+      <form class="auth-form" (ngSubmit)="onLogin()">
+
+        <h2 class="login-title">Iniciar Sesión</h2>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre de la Empresa</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ej: TechCorp S.A."
+            name="empresaLogin"
+            [(ngModel)]="loginData.empresa"
+            required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Correo Electrónico</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="usuario@empresa.com"
+            name="correoLogin"
+            [(ngModel)]="loginData.correo"
+            required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="********"
+            name="passwordLogin"
+            [(ngModel)]="loginData.password"
+            required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width" type="submit">
+          Ingresar
+        </button>
+
+        <button mat-stroked-button class="full-width back-btn" type="button" (click)="volverInicio()">
+          <mat-icon>arrow_back</mat-icon>
+          Regresar al Inicio
+        </button>
+
+      </form>
+
+    </mat-card>
+
+  </div>
+
+</div>

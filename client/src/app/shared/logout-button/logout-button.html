@@ -1,0 +1,12 @@
+@if (variant === 'full') {
+  <button mat-button [color]="color" class="logout-btn" (click)="onLogout()">
+    <mat-icon>logout</mat-icon>
+    <span>{{ label }}</span>
+  </button>
+}
+
+@if (variant === 'icon') {
+  <button mat-icon-button [color]="color" matTooltip="{{ label }}" (click)="onLogout()" class="logout-icon-btn">
+    <mat-icon>logout</mat-icon>
+  </button>
+}

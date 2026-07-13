@@ -1,0 +1,384 @@
+/* =========================================================
+   Variables y Reset Básico
+========================================================= */
+:host {
+  display: block;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+/* =========================================================
+   1. Barra de Navegación (Navbar)
+========================================================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background-color: #ffffff; 
+  color: #1a237e; /* Azul corporativo profundo */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* =========================================================
+   2. Sección Hero (Impacto Visual)
+========================================================= */
+.hero-section {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* Gradiente elegante que transmite tecnología y seriedad */
+  background: linear-gradient(135deg, #1a237e 0%, #0d1130 100%);
+  color: #ffffff;
+  padding: 0 20px;
+}
+
+.hero-content {
+  max-width: 800px;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: #e8eaf6;
+}
+
+.cta-btn {
+  font-size: 1.1rem;
+  padding: 8px 36px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   3. Estilos Generales de Secciones
+========================================================= */
+.about-section, .features-section, .pricing-section {
+  padding: 80px 10%;
+  text-align: center;
+}
+
+.about-section {
+  background-color: #f8f9fa; /* Gris muy sutil para crear contraste */
+}
+
+.about-section h2, .features-section h2, .pricing-section h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #1a237e;
+  margin-bottom: 24px;
+}
+
+.about-section p {
+  max-width: 750px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #555555;
+}
+
+/* =========================================================
+   4. Grilla de Tarjetas (Características y Precios)
+========================================================= */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+
+/* --- Tarjetas de Características --- */
+.features-section mat-card {
+  padding: 32px 24px;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
+}
+
+.features-section mat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+mat-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #222222;
+  margin-bottom: 16px;
+}
+
+mat-card-content {
+  font-size: 1.05rem;
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   5. Tarjetas de Planes y Precios
+========================================================= */
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 32px;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+.pricing-card h2 {
+  font-size: 1.4rem !important; /* Sobreescribe el h2 general de sección */
+  color: #777777 !important;
+  margin-bottom: 16px !important;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.pricing-card h3 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 32px;
+}
+
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+  text-align: left;
+}
+
+.pricing-card ul li {
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+  color: #444444;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+}
+
+.pricing-card ul li:last-child {
+  border-bottom: none;
+}
+
+/* --- Plan Destacado (Pro) --- */
+.pricing-card.highlighted {
+  border: 2px solid #1a237e;
+  transform: scale(1.05); /* Lo hace ligeramente más grande */
+  box-shadow: 0 20px 40px rgba(26, 35, 126, 0.12) !important;
+  position: relative;
+  z-index: 1;
+}
+
+.pricing-card.highlighted:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+/* =========================================================
+   6. Animaciones y Responsividad
+========================================================= */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .pricing-card.highlighted {
+    transform: scale(1); /* Desactiva la escala en móviles para evitar desbordes */
+  }
+  
+  .pricing-card.highlighted:hover {
+    transform: translateY(-8px);
+  }
+  
+  .about-section, .features-section, .pricing-section {
+    padding: 60px 5%;
+  }
+}
+
+/* ==========================================
+   PLANES INTERACTIVOS
+========================================== */
+
+.pricing-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  border: 2px solid #dbe2ff;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  border-color: #1a237e;
+  box-shadow: 0 15px 35px rgba(26, 35, 126, 0.15) !important;
+}
+
+.pricing-card:hover h3 {
+  color: #283593;
+}
+
+/* ==========================================
+   PLAN SELECCIONADO
+========================================== */
+
+.pricing-card.active {
+  border: 3px solid #1a237e;
+  box-shadow: 0 20px 40px rgba(26, 35, 126, 0.2) !important;
+  transform: translateY(-10px);
+}
+
+.pricing-card.active h3 {
+  color: #1a237e;
+}
+
+/* ==========================================
+   PLAN RECOMENDADO
+========================================== */
+
+.recommended {
+  position: relative;
+}
+
+.recommended::before {
+  content: "MÁS POPULAR";
+  position: absolute;
+  top: -14px;
+  right: 20px;
+  background: #1a237e;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 10;
+}
+
+/* ==========================================
+   SCROLL SUAVE
+========================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-document {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  color: #333333;
+}
+
+.modal-title {
+  margin-top: 0;
+  color: #3f51b5; 
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #888888;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  color: #3f51b5;
+  font-weight: 500;
+}
+
+.spinner {
+  border: 4px solid rgba(63, 81, 181, 0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-left-color: #3f51b5;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.precio-destacado {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #2e7d32;
+}
+
+.success-text {
+  color: #2e7d32;
+  font-weight: bold;
+  background-color: #e8f5e9;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}

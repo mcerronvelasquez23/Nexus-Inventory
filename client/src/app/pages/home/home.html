@@ -1,0 +1,186 @@
+<mat-toolbar color="primary" class="navbar">
+  <span class="logo">Nexus-Inventory B2B</span>
+  <span class="spacer"></span>
+  <button mat-raised-button color="accent" routerLink="/login">
+    Iniciar Sesión
+  </button>
+</mat-toolbar>
+
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>El control total de tu inventario, impulsado por IA</h1>
+    <p>
+      Optimiza tus almacenes, predice tendencias de ventas y reduce mermas
+      con nuestro sistema inteligente diseñado para la gran empresa.
+    </p>
+    <button mat-raised-button color="primary" class="cta-btn" (click)="irAPlanes()">
+      Descubrir más
+    </button>
+  </div>
+</section>
+
+<section class="about-section">
+  <h2>¿Qué es Nexus-Inventory?</h2>
+  <p>
+    Es una plataforma centralizada que combina análisis de datos en tiempo real
+    (Redis) y almacenamiento robusto (MongoDB) para automatizar la gestión de
+    stock, alertas de reabastecimiento y auditorías de tu negocio.
+  </p>
+</section>
+
+<section class="features-section">
+  <h2>Características Clave</h2>
+  <div class="cards-grid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Predicción de Demanda</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        Algoritmos que analizan historiales para sugerir cuánto stock comprar.
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Alertas en Tiempo Real</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        Notificaciones instantáneas sobre anomalías y quiebres de stock.
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Auditoría Continua</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        Registro inmutable de cada movimiento de inventario.
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<section class="pricing-section" id="planes">
+  <h2>Planes Empresariales</h2>
+  <div class="cards-grid">
+    <mat-card class="pricing-card" [class.active]="planSeleccionado === 'basico'">
+      <h2>Básico</h2>
+      <h3>$49/mes</h3>
+      <ul>
+        <li>Hasta 5,000 productos</li>
+        <li>Alertas estándar</li>
+        <li>Soporte por email</li>
+      </ul>
+      <button mat-stroked-button color="primary" (click)="seleccionarPlan('basico', 49)">
+        Elegir Plan
+      </button>
+    </mat-card>
+
+    <mat-card class="pricing-card recommended" [class.active]="planSeleccionado === 'pro'">
+      <h2>Pro</h2>
+      <h3>$99/mes</h3>
+      <ul>
+        <li>Productos Ilimitados</li>
+        <li>Módulo de Predicciones</li>
+        <li>Soporte 24/7</li>
+      </ul>
+      <button mat-raised-button color="primary" (click)="seleccionarPlan('pro', 99)">
+        Elegir Plan
+      </button>
+    </mat-card>
+
+    <mat-card class="pricing-card" [class.active]="planSeleccionado === 'enterprise'">
+      <h2>Enterprise</h2>
+      <h3>$299/mes</h3>
+      <ul>
+        <li>Infraestructura dedicada</li>
+        <li>Integración ERP</li>
+        <li>Auditoría avanzada</li>
+      </ul>
+      <button mat-stroked-button color="primary" (click)="seleccionarPlan('enterprise', 299)">
+        Elegir Plan
+      </button>
+    </mat-card>
+  </div>
+</section>
+
+<div class="modal-overlay" *ngIf="mostrarModal">
+  <div class="modal-document">
+    <button class="close-btn" (click)="cerrarModal()" [disabled]="procesandoPago">✕</button>
+
+    <div *ngIf="pasoActual === 'pago'">
+      <h2>Pasarela de Pago Segura</h2>
+      <p>Plan seleccionado: <b>{{ planSeleccionado | uppercase }}</b></p>
+      <p class="precio-destacado">Total a debitar: <b>${{ precioPlan }}</b></p>
+
+      <mat-form-field appearance="fill" style="width:100%">
+        <mat-label>Método de pago</mat-label>
+        <mat-select [(value)]="metodoPago" [disabled]="procesandoPago">
+          <mat-option value="YAPE">Yape / Plin</mat-option>
+          <mat-option value="TARJETA">Tarjeta de Crédito / Débito</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="metodoPago === 'YAPE'" class="form-pago">
+        <mat-form-field appearance="fill" style="width:100%">
+          <mat-label>Número de Celular</mat-label>
+          <input matInput [(ngModel)]="datosPago.numeroYape" placeholder="Ej: 999 888 777" maxlength="9" [disabled]="procesandoPago">
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="metodoPago === 'TARJETA'" class="form-pago">
+        <mat-form-field appearance="fill" style="width:100%">
+          <mat-label>Número de Tarjeta</mat-label>
+          <input matInput [(ngModel)]="datosPago.numeroTarjeta" placeholder="0000 0000 0000 0000" maxlength="16" [disabled]="procesandoPago">
+        </mat-form-field>
+        <div style="display: flex; gap: 15px;">
+          <mat-form-field appearance="fill" style="width:50%">
+            <mat-label>Vencimiento (MM/AA)</mat-label>
+            <input matInput [(ngModel)]="datosPago.vencimiento" placeholder="12/28" maxlength="5" [disabled]="procesandoPago">
+          </mat-form-field>
+          <mat-form-field appearance="fill" style="width:50%">
+            <mat-label>CVV</mat-label>
+            <input matInput type="password" [(ngModel)]="datosPago.cvv" placeholder="123" maxlength="4" [disabled]="procesandoPago">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div *ngIf="procesandoPago" class="loading-state">
+        <div class="spinner"></div>
+        <p>Procesando transacción con su entidad financiera...</p>
+      </div>
+
+      <button *ngIf="!procesandoPago" mat-raised-button color="primary" style="width: 100%; margin-top: 10px;"
+        [disabled]="!esPagoValido()" (click)="procesarPagoSimulado()">
+        Pagar y Continuar
+      </button>
+    </div>
+
+    <div *ngIf="pasoActual === 'registro'">
+      <h2>Crear Cuenta Admin</h2>
+      <p class="success-text">✓ Pago de ${{ precioPlan }} aprobado.</p>
+
+      <form [formGroup]="registroForm" (ngSubmit)="enviarRegistroYPago()">
+        <mat-form-field style="width:100%">
+          <mat-label>Nombre del Administrador</mat-label>
+          <input matInput formControlName="nombre">
+        </mat-form-field>
+        <mat-form-field style="width:100%">
+          <mat-label>Correo Corporativo</mat-label>
+          <input matInput formControlName="correo">
+        </mat-form-field>
+        <mat-form-field style="width:100%">
+          <mat-label>Nombre de la Empresa</mat-label>
+          <input matInput formControlName="empresa">
+        </mat-form-field>
+        <mat-form-field style="width:100%">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="password">
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" style="width: 100%; margin-top: 10px;"
+          type="submit" [disabled]="registroForm.invalid || enProceso">
+          Finalizar Configuración
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
