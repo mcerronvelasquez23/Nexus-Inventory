@@ -8,7 +8,7 @@ Sistema Integral de Gestión Empresarial con Inventario Inteligente desarrollado
 
 Nexus Inventory es una aplicación web desarrollada para optimizar la gestión empresarial mediante la administración de inventarios, productos, usuarios, ventas y reportes.
 
-El sistema implementa una arquitectura basada en API REST que permite una comunicación eficiente entre el frontend y el backend. Además, incorpora autenticación por roles, dashboard administrativo, generación de reportes en PDF y un chatbot para mejorar la experiencia del usuario.
+El sistema implementa una arquitectura basada en API REST que permite una comunicación eficiente entre el frontend y el backend. Además, incorpora autenticación por roles, dashboard administrativo, generación de reportes en PDF y un chatbot con Inteligencia Artificial para mejorar la experiencia del usuario.
 
 ---
 
@@ -52,7 +52,7 @@ El sistema implementa una arquitectura basada en API REST que permite una comuni
 - 💰 Registro de ventas.
 - 📄 Generación de reportes en PDF.
 - 📈 Dashboard administrativo.
-- 🤖 Chatbot integrado.
+- 🤖 Chatbot con Inteligencia Artificial.
 - 🔍 Búsqueda y filtrado de información.
 - 📱 Interfaz moderna y responsive.
 
@@ -134,11 +134,11 @@ Este repositorio incluye la documentación completa del proyecto en la carpeta *
 
 En ella encontrarás:
 
-- 📖 Manual de Usuario
-- 🛠️ Manual Técnico
-- 📊 Presentación del Proyecto
+- 📖 Manual de Usuario.
+- 🛠️ Manual Técnico.
+- 📊 Presentación del Proyecto.
 
-La documentación incluye información detallada sobre:
+La documentación incluye:
 
 - Arquitectura del sistema.
 - Tecnologías utilizadas.
@@ -178,7 +178,7 @@ Interesado en el desarrollo Full Stack, el diseño de APIs REST, bases de datos 
 
 Este proyecto fue desarrollado como parte de un trabajo académico en equipo.
 
-Participé en el desarrollo Full Stack del sistema utilizando Angular, Node.js, Express.js y MongoDB, colaborando en la implementación de distintas funcionalidades de la aplicación.
+Mi participación incluyó el desarrollo e implementación de funcionalidades Full Stack utilizando Angular, Node.js, Express.js y MongoDB, colaborando en la construcción de la aplicación y la integración de sus distintos módulos.
 
 ---
 
@@ -186,6 +186,8 @@ Participé en el desarrollo Full Stack del sistema utilizando Angular, Node.js, 
 
 Gracias por visitar este repositorio.
 
-Este proyecto fue desarrollado con fines académicos y forma parte de mi portafolio como desarrollador Full Stack.
+Este proyecto forma parte de mi portafolio como desarrollador Full Stack y representa mi experiencia en el desarrollo de aplicaciones web utilizando Angular, Node.js, Express.js y MongoDB.
+
+Para conocer el funcionamiento del sistema con mayor detalle, se recomienda revisar la carpeta **Documentos/**, donde se incluyen el Manual de Usuario, el Manual Técnico y la presentación del proyecto con capturas de las principales funcionalidades.
 
 Si el proyecto te resulta interesante, puedes darle una ⭐ en GitHub.
