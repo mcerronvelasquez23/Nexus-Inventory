@@ -6,15 +6,16 @@ Sistema Integral de Gestión Empresarial con Inventario Inteligente desarrollado
 
 ## 📌 Descripción
 
-Nexus Inventory es una aplicación web desarrollada para optimizar la gestión empresarial mediante el control de inventarios, productos, usuarios, ventas y reportes.
+Nexus Inventory es una aplicación web desarrollada para optimizar la gestión empresarial mediante la administración de inventarios, productos, usuarios, ventas y reportes.
 
-El sistema implementa una arquitectura basada en API REST, permitiendo una comunicación eficiente entre el frontend y el backend. Además, incorpora autenticación por roles, generación de reportes en PDF y un chatbot para mejorar la experiencia del usuario.
+El sistema implementa una arquitectura basada en API REST que permite una comunicación eficiente entre el frontend y el backend. Además, incorpora autenticación por roles, dashboard administrativo, generación de reportes en PDF y un chatbot para mejorar la experiencia del usuario.
 
 ---
 
 ## 🛠️ Tecnologías utilizadas
 
 ### Frontend
+
 - Angular
 - TypeScript
 - HTML5
@@ -23,14 +24,17 @@ El sistema implementa una arquitectura basada en API REST, permitiendo una comun
 - Angular Material
 
 ### Backend
+
 - Node.js
 - Express.js
 - API REST
 
 ### Base de Datos
+
 - MongoDB
 
 ### Herramientas
+
 - Git
 - GitHub
 - Visual Studio Code
@@ -41,13 +45,13 @@ El sistema implementa una arquitectura basada en API REST, permitiendo una comun
 
 ## ✨ Funcionalidades principales
 
-- 🔐 Autenticación de usuarios mediante roles.
-- 👥 Administración de usuarios.
-- 📦 Gestión de productos.
+- 🔐 Autenticación mediante roles.
+- 👥 Gestión de usuarios.
+- 📦 Administración de productos.
 - 📊 Control de inventario.
 - 💰 Registro de ventas.
-- 📄 Generación de reportes PDF.
-- 📈 Dashboard con indicadores del sistema.
+- 📄 Generación de reportes en PDF.
+- 📈 Dashboard administrativo.
 - 🤖 Chatbot integrado.
 - 🔍 Búsqueda y filtrado de información.
 - 📱 Interfaz moderna y responsive.
@@ -56,7 +60,7 @@ El sistema implementa una arquitectura basada en API REST, permitiendo una comun
 
 ## 📂 Estructura del proyecto
 
-```
+```text
 Nexus-Inventory
 │
 ├── api
@@ -77,8 +81,9 @@ Nexus-Inventory
 │   ├── Manual_Usuario.pdf
 │   └── Presentacion_Nexus_Inventory.pptx
 │
+├── README.md
 ├── package.json
-└── README.md
+└── package-lock.json
 ```
 
 ---
@@ -97,13 +102,9 @@ git clone https://github.com/mcerronvelasquez23/Nexus-Inventory.git
 cd Nexus-Inventory
 ```
 
-### 3. Instalar dependencias del proyecto
+### 3. Instalar dependencias
 
-```bash
-npm install
-```
-
-### 4. Ejecutar el Backend
+#### Backend
 
 ```bash
 cd api
@@ -111,7 +112,7 @@ npm install
 npm start
 ```
 
-### 5. Ejecutar el Frontend
+#### Frontend
 
 ```bash
 cd client
@@ -121,7 +122,7 @@ ng serve
 
 Abrir el navegador en:
 
-```
+```text
 http://localhost:4200
 ```
 
@@ -129,35 +130,47 @@ http://localhost:4200
 
 ## 📚 Documentación
 
-Este repositorio incluye la documentación completa del proyecto.
+Este repositorio incluye la documentación completa del proyecto en la carpeta **Documentos/**.
+
+En ella encontrarás:
 
 - 📖 Manual de Usuario
 - 🛠️ Manual Técnico
 - 📊 Presentación del Proyecto
 
-Los documentos se encuentran en la carpeta **Documentos/**.
+La documentación incluye información detallada sobre:
+
+- Arquitectura del sistema.
+- Tecnologías utilizadas.
+- Instalación y configuración.
+- Manual de uso.
+- Funcionalidades implementadas.
+- Capturas de pantalla de las principales interfaces.
+- Explicación técnica del desarrollo del proyecto.
+
+> **Se recomienda revisar la carpeta `Documentos/`, donde se encuentra la documentación completa y las capturas de pantalla que permiten conocer el funcionamiento del sistema.**
 
 ---
 
 ## 🎯 Objetivo del proyecto
 
-Desarrollar un sistema web que facilite la administración empresarial mediante el control de inventarios, ventas, productos y usuarios, aplicando tecnologías modernas de desarrollo Full Stack y una arquitectura basada en API REST.
+Desarrollar una aplicación web que facilite la administración empresarial mediante el control de inventarios, productos, usuarios y ventas, aplicando tecnologías modernas de desarrollo Full Stack y una arquitectura basada en API REST.
 
 ---
 
 ## 👨‍💻 Autor
 
-**Miguel Cerrón Velásquez**
+**Miguel Ernesto Cerrón Velásquez**
 
-Estudiante de Desarrollo de Sistemas de Información
+Desarrollador Full Stack en formación.
 
-Instituto Superior SISE
+Estudiante de Desarrollo de Sistemas de Información en el Instituto Superior SISE.
 
 ### Perfil
 
-Estudiante de Desarrollo de Sistemas de Información con conocimientos en desarrollo Full Stack utilizando Angular, Node.js, Express.js y MongoDB.
+Apasionado por el desarrollo de aplicaciones web utilizando Angular, Node.js, Express.js y MongoDB.
 
-Tengo experiencia en el desarrollo de aplicaciones web con arquitectura API REST, integración de bases de datos, autenticación de usuarios y desarrollo de interfaces modernas.
+Interesado en el desarrollo Full Stack, el diseño de APIs REST, bases de datos y la creación de soluciones tecnológicas que optimicen procesos empresariales.
 
 ---
 
@@ -165,7 +178,7 @@ Tengo experiencia en el desarrollo de aplicaciones web con arquitectura API REST
 
 Este proyecto fue desarrollado como parte de un trabajo académico en equipo.
 
-Mi participación principal estuvo enfocada en el desarrollo Full Stack del sistema utilizando Angular, Node.js, Express.js y MongoDB.
+Participé en el desarrollo Full Stack del sistema utilizando Angular, Node.js, Express.js y MongoDB, colaborando en la implementación de distintas funcionalidades de la aplicación.
 
 ---
 
@@ -173,4 +186,6 @@ Mi participación principal estuvo enfocada en el desarrollo Full Stack del sist
 
 Gracias por visitar este repositorio.
 
-Si este proyecto te resulta útil o interesante, puedes darle una ⭐ en GitHub.
+Este proyecto fue desarrollado con fines académicos y forma parte de mi portafolio como desarrollador Full Stack.
+
+Si el proyecto te resulta interesante, puedes darle una ⭐ en GitHub.
